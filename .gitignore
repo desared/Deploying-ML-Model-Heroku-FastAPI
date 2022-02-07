@@ -133,4 +133,4 @@ dmypy.json
 /data/clean_census.csv
 
 *.zip
-aws/
+aws/dist/*
