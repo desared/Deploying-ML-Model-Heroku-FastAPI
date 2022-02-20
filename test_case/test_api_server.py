@@ -10,10 +10,10 @@ def test_get(client):
 
 
 def test_post_high(client):
-    request = client.post("/", json={'age': 40,
+    request = client.post("/", json={'age': 70,
                                      'workclass': 'Private',
-                                     'fnlgt': 159449,
-                                     'education': 'Assoc-acdm',
+                                     'fnlgt': 124191,
+                                     'education': 'Masters',
                                      'marital_status': 'Never-married',
                                      'occupation': 'Exec-managerial',
                                      'relationship': 'Not-in-family',
