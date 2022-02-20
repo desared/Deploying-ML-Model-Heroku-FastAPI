@@ -14,7 +14,7 @@ def raw_data():
     """
     Get raw dataset.
     """
-    df = pd.read_csv("data/census.csv", skipinitialspace=True)
+    df = pd.read_csv("data_storage/census.csv", skipinitialspace=True)
 
     return df
 
