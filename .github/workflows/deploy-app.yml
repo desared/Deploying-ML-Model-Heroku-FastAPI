@@ -31,7 +31,6 @@ jobs:
         run: dvc pull -R
       - name: Run Flake8
         run: |
-          flake8 --max-line-length 115
-          flake8
+          flake8 --max-line-length 99
       - name: Run pytest
         run: pytest
