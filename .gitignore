@@ -74,6 +74,7 @@ docs/_build/
 # PyBuilder
 target/
 
+outputs/*
 # Jupyter Notebook
 .ipynb_checkpoints
 
@@ -131,3 +132,4 @@ dmypy.json
 
 *.zip
 aws/dist/*
+local_remote_data_dir/*
