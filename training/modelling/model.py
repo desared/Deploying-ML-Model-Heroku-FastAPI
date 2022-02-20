@@ -41,7 +41,10 @@ def train_model(X_train: np.array, y_train: np.array) -> RandomForestClassifier:
     return model
 
 
-def compute_model_metrics(y: np.array, preds: np.array) -> Tuple[float, float, float]:
+def compute_model_metrics(
+        y: np.array,
+        preds: np.array
+) -> Tuple[float, float, float]:
     """
     Validates the trained machine learning model using precision, recall, and F1.
 
