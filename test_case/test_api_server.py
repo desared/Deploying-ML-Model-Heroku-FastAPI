@@ -6,11 +6,11 @@ Test the API server.
 def test_get(client):
     r = client.get("/")
     assert r.status_code == 200
-    assert r.json() == {"message": "Greetings!"}
+    assert r.json() == {"message": "Welcome!"}
 
 
 def test_post_high(client):
-    request = client.post("/", json={'age': 33,
+    request = client.post("/", json={'age': 50,
                                      'workclass': 'Private',
                                      'fnlgt': 149184,
                                      'education': 'HS-grad',
