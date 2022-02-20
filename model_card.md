@@ -1,28 +1,35 @@
 # Model Card
 
-For additional information see the Model Card paper: https://arxiv.org/pdf/1810.03993.pdf
+Model Card paper: https://arxiv.org/pdf/1810.03993.pdf
 
 ## Model Details
-Used Random forest classifier for prediction. Default configuration were used for training.
+Random forest classifier is used as a classifier. Random forests are an ensemble learning method for classification, 
+regression and other tasks that operates by constructing a multitude of decision trees at training time. For 
+classification tasks, the output of the random forest is the class selected by most trees.
+Default configuration were used for training.
+
 ## Intended Use
 
-This model should be used to predict the category of the salary of a person based on it's financials attributes.
+This model should be used to predict the category of the salary of a person based on personal features.
 
 ## Training Data
 
-Source of data https://archive.ics.uci.edu/ml/datasets/census+income ; 80% of the data is used for training using strtified KFold.
+Source of data https://archive.ics.uci.edu/ml/datasets/census+income . 
+80% of the data is used for training using stratified KFold.
 
 ## Evaluation Data
 
-Source of data https://archive.ics.uci.edu/ml/datasets/census+income ; 20% of the data is used to validate the model.
+Source of data https://archive.ics.uci.edu/ml/datasets/census+income .
+20% of the data is used to validate the model on unseen data.
 
 ## Metrics
 
-The model was evaluated using Accuracy score, F1 beta score, Precision and Recall. The value is around 0.80.
+The model was evaluated using Accuracy score, F1 score, Precision and Recall. Accuracy was 0.821.
+
 ## Ethical Considerations
-For Ethical Considerations the metics were also calculated on data slices. This will drive to a model that may potentially discriminate people; 
-further investigation before using it should be done.
+The model performance was calculated on data slices. This drives to a model that may potentially bias people on profession or gender. 
+Therefore, this study is just for education purposes and further investigation might be needed. 
 
 ## Caveats and Recommendations
 
-The data is biased based on gender. Have data imbalance that need to be investigated.
+Data imbalance in some features might need further investigation as it causes feature bias. 
