@@ -10,16 +10,16 @@ def test_get(client):
 
 
 def test_post_high(client):
-    request = client.post("/", json={'age': 50,
+    request = client.post("/", json={'age': 40,
                                      'workclass': 'Private',
-                                     'fnlgt': 149184,
-                                     'education': 'HS-grad',
+                                     'fnlgt': 159449,
+                                     'education': 'Assoc-acdm',
                                      'marital_status': 'Never-married',
-                                     'occupation': 'Prof-specialty',
+                                     'occupation': 'Exec-managerial',
                                      'relationship': 'Not-in-family',
                                      'race': 'White',
                                      'sex': 'Male',
-                                     'hoursPerWeek': 60,
+                                     'hoursPerWeek': 50,
                                      'nativeCountry': 'United-States'
                                      })
     assert request.status_code == 200
