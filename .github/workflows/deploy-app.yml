@@ -26,7 +26,7 @@ jobs:
           pip install -r requirements.txt
           pip install flake8 pytest
       - name: Setup DVC
-        uses: iterative/setup-dvc@v1
+        uses: iterative/setup-dvc@v2
       - name: Pull data from DVC
         run: dvc pull -R
       - name: Run Flake8
