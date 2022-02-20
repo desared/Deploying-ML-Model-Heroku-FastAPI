@@ -51,7 +51,7 @@ def process_data(
         x: pd.DataFrame,
         categorical_features: list,
         label: str = None,
-        training: bool =True,
+        training: bool = True,
         encoder=None,
         lb=None):
     """ Process the data used in the machine learning pipeline.
