@@ -129,8 +129,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-/data/census.csv
-/data/clean_census.csv
-
 *.zip
 aws/dist/*
