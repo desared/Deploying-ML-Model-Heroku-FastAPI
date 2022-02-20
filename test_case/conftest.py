@@ -14,7 +14,7 @@ def raw_data():
     """
     Get raw dataset.
     """
-    df = pd.read_csv("data/census.csv", skipinitialspace=True)
+    df = pd.read_csv("../data/census.csv", skipinitialspace=True)
 
     return df
 
@@ -34,7 +34,7 @@ def cat_features():
     Get categorical features.
     """
     with open('config.yml') as f:
-        config = yaml.load(f)
+        config = yaml.safe_load(f)
 
     return config['data']['cat_features']
 
