@@ -37,7 +37,7 @@ async def get_items():
     """
     GET on the root giving a welcome message.
     """
-    return {"message": "Welcome!"}
+    return {"message": str(type(model))}
 
 
 @app.post("/")
@@ -62,6 +62,6 @@ async def inference(input_data: ModelInput):
     input_df = DataFrame(data=input_data.values(), index=input_data.keys()).T
     input_df = input_df[columns]
 
-    prediction = run_inference(model, encoder, binarizer, input_df, cat_features)
+    prediction = run_inference(input_df, cat_features)
 
     return {"prediction": prediction}
