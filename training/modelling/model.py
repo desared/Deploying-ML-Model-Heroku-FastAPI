@@ -125,9 +125,8 @@ def compute_scores(
 
         accr, prc, rcl, fb = compute_model_metrics(y_test, y_pred)
 
-        metric_info = "[Validation Set] Accuracy: %s Precision: %s Recall: %s FBeta: %s" % (
-            accr, prc, rcl, fb
-        )
+        metric_info = "[Validation Set] Accuracy: %s " \
+            "Precision: %s Recall: %s FBeta: %s" % (accr, prc, rcl, fb)
         logging.info(metric_info)
         file.write(metric_info + '\n')
 
@@ -147,8 +146,6 @@ def compute_scores(
                 accr, prc, rcl, fb = compute_model_metrics(y_test_slice, y_pred_slice)
 
                 metric_info = "[%s]-[%s] Accuracy: %s Precision: %s " \
-                              "Recall: %s FBeta: %s" % (
-                    category, cls, accr, prc, rcl, fb
-                )
+                    "Recall: %s FBeta: %s" % (category, cls, accr, prc, rcl, fb)
                 logging.info(metric_info)
                 file.write(metric_info + '\n')

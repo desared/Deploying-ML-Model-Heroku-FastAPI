@@ -2,7 +2,6 @@
 Module to run the modelling inference.
 """
 import numpy as np
-from joblib import load
 from .modelling.data import process_data
 from .modelling.model import inference
 
