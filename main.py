@@ -27,9 +27,9 @@ app = FastAPI()
 async def startup_event():
     global model, encoder, binarizer
 
-    model = joblib.load("./model/model.pkl")
-    encoder = joblib.load("./model/encoder.pkl")
-    binarizer = joblib.load("./model/lb.pkl")
+    model = joblib.load("./model/model.joblib")
+    encoder = joblib.load("./model/encoder.joblib")
+    binarizer = joblib.load("./model/lb.joblib")
 
 
 @app.get("/")
