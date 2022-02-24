@@ -8,7 +8,7 @@ import numpy as np
 from numpy import mean
 from numpy import std
 
-from sklearn.metrics import fbeta_score, precision_score, recall_score
+from sklearn.metrics import accuracy_score, fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import cross_val_score
@@ -44,7 +44,7 @@ def train_model(X_train: np.array, y_train: np.array) -> RandomForestClassifier:
 def compute_model_metrics(
         y: np.array,
         preds: np.array
-) -> Tuple[float, float, float]:
+) -> Tuple[float, float, float, float]:
     """
     Validates the trained machine learning model using precision, recall, and F1.
 
@@ -56,14 +56,16 @@ def compute_model_metrics(
         Predicted labels, binarized.
     Returns
     -------
+    accuracy: float
     precision : float
     recall : float
     fbeta : float
     """
+    accuracy = accuracy_score(y, preds)
     fbeta = fbeta_score(y, preds, beta=1, zero_division=1)
     precision = precision_score(y, preds, zero_division=1)
     recall = recall_score(y, preds, zero_division=1)
-    return precision, recall, fbeta
+    return accuracy, precision, recall, fbeta
 
 
 def inference(model: RandomForestClassifier, x: np.array) -> np.array:
@@ -84,7 +86,7 @@ def inference(model: RandomForestClassifier, x: np.array) -> np.array:
     return preds
 
 
-def compute_score_per_slice(
+def compute_scores(
         trained_model: RandomForestClassifier,
         test: np.array,
         encoder: Any,
@@ -114,21 +116,39 @@ def compute_score_per_slice(
 
     """
     with open(f'{root_path}/model/slice_output.txt', 'w') as file:
+        x_test, y_test, _, _ = process_data(
+            test,
+            categorical_features=cat_features, training=False,
+            label="salary", encoder=encoder, lb=lb)
+
+        y_pred = trained_model.predict(x_test)
+
+        accr, prc, rcl, fb = compute_model_metrics(y_test, y_pred)
+
+        metric_info = "[Validation Set] Accuracy: %s Precision: %s Recall: %s FBeta: %s" % (
+            accr, prc, rcl, fb
+        )
+        logging.info(metric_info)
+        file.write(metric_info + '\n')
+
+        logging.info("===================================================")
+        logging.info("Classification Metrics on the whole slices of categories:")
         for category in cat_features:
             for cls in test[category].unique():
                 temp_df = test[test[category] == cls]
 
-                x_test, y_test, _, _ = process_data(
+                x_test_slice, y_test_slice, _, _ = process_data(
                     temp_df,
                     categorical_features=cat_features, training=False,
                     label="salary", encoder=encoder, lb=lb)
 
-                y_pred = trained_model.predict(x_test)
+                y_pred_slice = trained_model.predict(x_test_slice)
 
-                prc, rcl, fb = compute_model_metrics(y_test, y_pred)
+                accr, prc, rcl, fb = compute_model_metrics(y_test_slice, y_pred_slice)
 
-                metric_info = "[%s]-[%s] Precision: %s " \
-                              "Recall: %s FBeta: %s" % (category, cls,
-                                                        prc, rcl, fb)
+                metric_info = "[%s]-[%s] Accuracy: %s Precision: %s " \
+                              "Recall: %s FBeta: %s" % (
+                    category, cls, accr, prc, rcl, fb
+                )
                 logging.info(metric_info)
                 file.write(metric_info + '\n')

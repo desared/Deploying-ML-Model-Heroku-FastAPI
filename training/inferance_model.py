@@ -7,12 +7,15 @@ from .modelling.data import process_data
 from .modelling.model import inference
 
 
-def run_inference(data: np.array, cat_features: list):
+def run_inference(model, encoder, lb, data: np.array, cat_features: list):
     """
     Load model and run inference.
 
     Inputs
     ----------
+    model: classifier
+    encoder: object which encoded the data
+    lb: label binarizer object
     data : np.array
         Processed data.
     cat_features: list[str]
@@ -22,10 +25,6 @@ def run_inference(data: np.array, cat_features: list):
     -------
     predictions
     """
-    model = load("model/model.joblib")
-    encoder = load("model/encoder.joblib")
-    lb = load("model/lb.joblib")
-
     X, _, _, _ = process_data(
         data,
         categorical_features=cat_features,

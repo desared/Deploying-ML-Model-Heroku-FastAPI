@@ -3,7 +3,7 @@ Module to validate the model.
 """
 import pandas as pd
 from joblib import load
-from .modelling.model import compute_score_per_slice
+from .modelling.model import compute_scores
 
 
 def val_model(test_df: pd.DataFrame, cat_features: list, root_dir: str):
@@ -28,7 +28,7 @@ def val_model(test_df: pd.DataFrame, cat_features: list, root_dir: str):
     encoder = load(f"{root_dir}/model/encoder.joblib")
     lb = load(f"{root_dir}/model/lb.joblib")
 
-    compute_score_per_slice(
+    compute_scores(
         trained_model,
         test_df,
         encoder,

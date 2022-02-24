@@ -24,7 +24,9 @@ Source of data https://archive.ics.uci.edu/ml/datasets/census+income .
 
 ## Metrics
 
-The model was evaluated using Accuracy score, F1 score, Precision and Recall. Accuracy was 0.823.
+The model was evaluated using Accuracy score, FBeta, Precision and Recall. 
+The overall accuracy on the validation set was 0.8283012607830126,  Precision: 0.661526599845798,
+Recall: 0.5900962861072903 and FBeta: 0.6237731733914941. 
 
 ## Ethical Considerations
 The model performance was calculated on data slices. This drives to a model that may potentially bias people on profession or gender. 

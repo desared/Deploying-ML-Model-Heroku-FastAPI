@@ -1,6 +1,7 @@
 """
 Main module to run the API.
 """
+import pickle
 import os
 import yaml
 
@@ -20,6 +21,14 @@ with open('config.yml') as f:
     config = yaml.safe_load(f)
 
 app = FastAPI()
+
+
+@app.on_event("startup")
+async def startup_event():
+    global model, encoder, binarizer
+    model = pickle.load(open("./model/model.pkl", "rb"))
+    encoder = pickle.load(open("./model/encoder.pkl", "rb"))
+    binarizer = pickle.load(open("./model/lb.pkl", "rb"))
 
 
 @app.get("/")
@@ -52,6 +61,6 @@ async def inference(input_data: ModelInput):
     input_df = DataFrame(data=input_data.values(), index=input_data.keys()).T
     input_df = input_df[columns]
 
-    prediction = run_inference(input_df, cat_features)
+    prediction = run_inference(model, encoder, binarizer, input_df, cat_features)
 
     return {"prediction": prediction}
