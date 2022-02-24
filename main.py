@@ -1,7 +1,7 @@
 """
 Main module to run the API.
 """
-import pickle
+import joblib
 import os
 import yaml
 
@@ -26,9 +26,10 @@ app = FastAPI()
 @app.on_event("startup")
 async def startup_event():
     global model, encoder, binarizer
-    model = pickle.load(open("./model/model.pkl", "rb"))
-    encoder = pickle.load(open("./model/encoder.pkl", "rb"))
-    binarizer = pickle.load(open("./model/lb.pkl", "rb"))
+
+    model = joblib.load("./model/model.pkl")
+    encoder = joblib.load("./model/encoder.pkl")
+    binarizer = joblib.load("./model/lb.pkl")
 
 
 @app.get("/")
