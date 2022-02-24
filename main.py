@@ -37,7 +37,7 @@ async def get_items():
     """
     GET on the root giving a welcome message.
     """
-    return {"message": str(type(model))}
+    return {"message": "Welcome!"}
 
 
 @app.post("/")
