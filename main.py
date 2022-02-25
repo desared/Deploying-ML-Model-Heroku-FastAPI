@@ -1,7 +1,6 @@
 """
 Main module to run the API.
 """
-import joblib
 import os
 import yaml
 
@@ -21,15 +20,6 @@ with open('config.yml') as f:
     config = yaml.safe_load(f)
 
 app = FastAPI()
-
-
-# @app.on_event("startup")
-# async def startup_event():
-#     global model, encoder, binarizer
-#
-#     model = joblib.load("model/model.joblib")
-#     encoder = joblib.load("model/encoder.joblib")
-#     binarizer = joblib.load("model/lb.joblib")
 
 
 @app.get("/")
