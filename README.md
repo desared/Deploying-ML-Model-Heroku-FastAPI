@@ -1,4 +1,4 @@
-# Dynamic Risk Assessment System
+# Deploying a Machine Learning Model with Heroku and FastAPI
 Project for [ML DevOps Engineer Nanodegree](https://www.udacity.com/course/machine-learning-dev-ops-engineer-nanodegree--nd0821), unit 4.
 
 ## Environment Set up
